@@ -8,7 +8,7 @@ data = pd.read_csv("sample.csv")
 # NaN 값을 포함하는 행을 제거
 data.dropna(subset=['appln_title', 'appln_abstract'], inplace=True)
 
-# 학습 데이터와 테스트 데이터에서 제목과 초록을 추출
+# raw 데이터에서 제목과 초록을 추출
 # 각 row 별로  appln_title 컬럼과 appln_abstract 컬럼의 데이터를 합쳐 리스트 만들기
 documents = data['appln_title'] + ' ' + data['appln_abstract']
 
