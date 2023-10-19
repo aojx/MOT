@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 import pandas as pd
 
 # raw data 파일
-data = pd.read_csv("greenhouse_gas.csv")
+data = pd.read_csv("sample.csv")
 
 # NaN 값을 포함하는 행을 제거
 data.dropna(subset=['appln_title', 'appln_abstract'], inplace=True)
