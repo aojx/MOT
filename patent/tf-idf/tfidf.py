@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 import pandas as pd
 
 # raw data 파일
-data = pd.read_csv("cpc_y02c_all_title.csv")
+data = pd.read_csv("greenhouse_gas.csv")
 
 # NaN 값을 포함하는 행을 제거
 data.dropna(subset=['appln_title', 'appln_abstract'], inplace=True)
@@ -14,8 +14,10 @@ documents = data['appln_title'] + ' ' + data['appln_abstract']
 
 # 사용자 정의 불용어 목록(콤마로 구분하여 계속 추가 가능)
 custom_stop_words = [
-        'method','methods','apparatus','using','en',
-        'process'
+        'method','methods','apparatus','using','en','invention',
+        'second','comprises','comprising','material','having','present','provided','relates',
+        'process','device','includes','arranged','data','end','body','box',
+        'collecting','collection','connected','discloses','field'
 ]
 
 # 불용어 목록 결합
@@ -23,7 +25,7 @@ all_stop_words = list(ENGLISH_STOP_WORDS) + custom_stop_words
 
 # TF-IDF 벡터화
 # 조금 더 많은 단어를 추출해보고 싶다면 max_features 를 늘리기
-vectorizer = TfidfVectorizer(max_features=10,stop_words=all_stop_words,ngram_range=(1,2),min_df=10,token_pattern=r'\b[a-zA-Z_][a-zA-Z_]+\b')
+vectorizer = TfidfVectorizer(max_features=20,stop_words=all_stop_words,ngram_range=(1,3),min_df=10,token_pattern=r'\b[a-zA-Z_][a-zA-Z_]+\b')
 tfidf_matrix = vectorizer.fit_transform(documents)
 
 # 단어 목록
