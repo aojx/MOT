@@ -34,7 +34,10 @@ terms = vectorizer.get_feature_names_out()
 # TF-IDF 값 및 단어 출력
 tfidf_values = tfidf_matrix.toarray()[0]
 df = pd.DataFrame({'Term': terms, 'TF-IDF': tfidf_values})
-#df = df.sort_values(by=['TF-IDF'], ascending=False)
+
+# TF-IDF 순서대로 정렬
+# 이 라인을 주석처리하면 단어가 나타난 빈도순으로 표시됨 (그게 더 유용할 수도 있음)
+df = df.sort_values(by=['TF-IDF'], ascending=False)
 
 # 출력할 목록의 갯수를 제한하지 않음
 pd.set_option("display.max_rows", None)
