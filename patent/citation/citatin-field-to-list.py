@@ -18,13 +18,13 @@ with open(input_filename, 'r', encoding='utf-8-sig') as input_file, open(output_
     csv_reader = csv.reader(input_file)
     csv_writer = csv.writer(output_file)
     csv_writer.writerow(['application','citation','type'])
-    
+
     # 각 행을 처리합니다.
     for row in csv_reader:
         patent_number = row[0].strip()  # 특허 번호 trim 처리
         citation_numbers = [num.strip() for num in row[1].split('|')]  # 인용 특허 번호 trim 처리
         cited_by_numbers = [num.strip() for num in row[2].split('|')]  # 피인용 특허 번호 trim 처리
-        
+
         # 인용 특허 번호가 없는 경우 "인용 없음"으로 처리
         if citation_numbers == ['']:
             csv_writer.writerow([patent_number, '', 'NO_FWD'])
@@ -32,7 +32,7 @@ with open(input_filename, 'r', encoding='utf-8-sig') as input_file, open(output_
             # 인용 특허 번호를 처리하고 출력 파일에 기록합니다.
             for citation_number in citation_numbers:
                 csv_writer.writerow([patent_number, citation_number, 'FWD'])
-        
+
         # 피인용 특허 번호가 없는 경우 "피인용 없음"으로 처리
         if cited_by_numbers == ['']:
             csv_writer.writerow([patent_number, '', 'NO_BWD'])
@@ -40,4 +40,3 @@ with open(input_filename, 'r', encoding='utf-8-sig') as input_file, open(output_
             # 피인용 특허 번호를 처리하고 출력 파일에 기록합니다.
             for cited_by_number in cited_by_numbers:
                 csv_writer.writerow([patent_number, cited_by_number, 'BWD'])
-
