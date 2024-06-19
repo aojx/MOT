@@ -1,0 +1,7 @@
+.DS_Store
+pytorch/cnn/**/*.png
+pytorch/data/*
+**/__pycache__/*
+patent/patent_label/*.csv
+patent/patent_label/*.pkl
+patent/patent_label/2024_final/*
